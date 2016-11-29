@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/new_exercise_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:text="Exercise name"
+        android:textSize="@dimen/text_normal"/>
+
+    <ImageView
+        android:id="@+id/new_exercise_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_remove_grey600_36dp"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal"/>
+
+    <TextView
+        android:id="@+id/new_exercise_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/text_big"/>
+
+    <ImageView
+        android:id="@+id/new_exercise_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_grey600_36dp"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal"/>
+</LinearLayout>

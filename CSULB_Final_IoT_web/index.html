@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FinalWebSite</title>
+<meta name="keywords" content="Arduino Microsoft Azure" />
+<meta name="description" content="Show data from arduino" />
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<meta charset="UTF-8">
+
+<script language="javascript" type="text/javascript">
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+</head>
+<body>
+
+<div id="templatemo_container">
+
+	<div id="templatemo_site_title_wrapper">
+    
+    	<div id="site_title">
+            <h1>
+                <a>CloudUino
+                <span>Arduino/MicrosoftAzure/WebSite</span></a>
+            </h1>
+        </div>
+    
+    </div> <!-- end of site title -->
+    
+	<div id="templatemo_banner">
+    </div> 
+    <!-- end of banner -->
+    
+    <div id="templatemo_menu">
+    
+	    <ul>
+            <li><a href="#" class="current">Home</a></li>
+            <li><a href="data.html" target="_parent" class="last">Data</a></li>
+        </ul>
+    
+    </div>
+    
+    <div id="templatemo_content">
+    
+    	<div class="section_w920">
+        
+        	<h2>Our Project</h2>
+        
+   	  <div class="section_w430 fl">
+            	<img class="image_wrapper fl_image" src="images/arduino_uno.jpg" alt="image" />
+              	<h3>Description</h3>
+            	 <p>For academic purpose we are using an Arduino to log different sensors data and store them on a cloud service. The retreived data is accessible throught the Data page of this website.
+                    Our system is build of three different hardware components: <br/>The Arduino UNO and telemetry, sound, temperature sensors.<br/>An ArduinoEthernetShield for ethernet communication.<br/>A Grove base shield board which simplifies the wiring of electronics.<br/>The data is stored in an SQL database through a mobile service and is displayed on this website.</p>
+          </div>
+            
+            <div class="section_w430 fr">
+            	<img class="image_wrapper fl_image" src="images/arduino_ethernet_shield.jpg" alt="image" />
+                <h3>Technology</h3>
+            	<p>Mobile services.<br/>SQL Database for storage.<br/>
+Web app for the website.</p>	
+            
+            </div>
+        
+        	<div class="cleaner"></div>
+      </div>
+        
+        <div class="cleaner_h50"></div>
+        
+        <div class="section_w920">
+        	<h2>GitHub Source</h2>
+            
+            <div class="cleaner_h20"></div>
+            
+            <img class="image_wrapper fl_image" src="images/github.png" alt="image" />
+            <h3>WebSite:</h3>
+            <a href="https://github.com/deloum-a/iotFinalWebSite"><b>https://github.com/deloum-a/iotFinalWebSite</b></a>
+            <h3>Arduino:</h3>
+            <a href="https://github.com/deloum-a/iotFinalArduino"><b>https://github.com/deloum-a/iotFinalArduino</b></a>
+        <!-- <div class="button_01"><a href="#">Read more</a></div> -->
+            
+            <div class="cleaner"></div>
+            
+      </div>
+     
+    </div>
+
+    <div id="templatemo_footer">
+        
+        <ul class="footer_menu">
+            <li><a href="#">Home</a></li>
+            <li class="last_menu"><a href="#">Contact</a></li>
+        </ul>
+
+        Copyright © 2048 <a href="#">FrenchGuys by [Antoine Deloume | Victor Solevic |
+        Alexandre Ghiazza]</a>
+       
+   
+    </div> <!-- end of footer -->
+
+</div> <!-- end of container -->
+
+</body>
+</html>

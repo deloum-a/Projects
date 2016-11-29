@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FinalWebSite</title>
+  <link href="css/jsonToTable.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+<script type="text/javascript" src="js/jsonToTable.js" ></script>
+
+<script language="javascript" type="text/javascript">
+
+  function getData() {
+    var data = [];
+    var header = [];
+    var xmlHttp = new XMLHttpRequest();
+    var url = ["http://arduino-uno-test.azure-mobile.net/tables/telemetry","http://arduino-uno-test.azure-mobile.net/tables/telemetry"];
+
+    for (var i = url.length - 1; i >= 0; i--) {
+      xmlHttp.open("GET", url[i], false);
+      xmlHttp.send(null);
+      var tmp = url[i].split('/');
+      header.push(tmp[tmp.length - 1]);
+      data.push(xmlHttp.responseText);
+    };
+    document.getElementById("id01").innerHTML += jsonToTableVerSpe(data, 'table', 'value', header);
+  }
+
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+      getData();
+    } else if (response.status === 'not_authorized') {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '829857070425773',
+    cookie     : true,  
+    xfbml      : true,  
+    version    : 'v2.2' 
+  });
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status"></div>
+
+<div id="id01"></div>
+
+</body>
+</html>

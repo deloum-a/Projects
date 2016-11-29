@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FinalWebSite</title>
+<meta name="keywords" content="Arduino Microsoft Azure" />
+<meta name="description" content="Show data from arduino" />
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jsonToTable.js" ></script>
+<script language="javascript" type="text/javascript">
+function getData() {
+    var data = [];
+    var header = [];
+    var xmlHttp = new XMLHttpRequest();
+    var url = ["http://arduino-uno-test.azure-mobile.net/tables/telemetry?$top=1000","http://arduino-uno-test.azure-mobile.net/tables/sound?$top=1000","http://arduino-uno-test.azure-mobile.net/tables/temperature?$top=1000"];
+
+    for (var i = url.length - 1; i >= 0; i--) {
+      xmlHttp.open("GET", url[i], false);
+      xmlHttp.send(null);
+      var tmp = url[i].split('/');
+      tmp = tmp[tmp.length - 1];
+      header.push(tmp.split('?')[0]);
+      data.push(xmlHttp.responseText);
+    };
+    document.getElementById("id01").innerHTML = "";
+    document.getElementById("id01").innerHTML += jsonToTableVerSpe(data, 'table', 'value', header);
+  }
+
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+      getData();
+    } else if (response.status === 'not_authorized') {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '829857070425773',
+    cookie     : true,  
+    xfbml      : true,  
+    version    : 'v2.2' 
+  });
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+</head>
+<body>
+
+<div id="templatemo_container">
+
+	<div id="templatemo_site_title_wrapper">
+    
+    	<div id="site_title">
+            <h1>
+                <a>CloudUino
+                <span>Arduino/MicrosoftAzure/WebSite</span></a>
+            </h1>
+        </div>
+    
+    </div> <!-- end of site title -->
+    
+	<div id="templatemo_banner">
+    </div> 
+    <!-- end of banner -->
+    
+    <div id="templatemo_menu">
+    
+	    <ul>
+            <li><a href="index.html" target="_parent" class="first">Home</a></li>
+            <li><a href="#" class="current">Data</a></li>
+        </ul>
+    
+    </div>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <div id="status"></div>
+
+    <div id="templatemo_content">
+      <div class="section_w920">
+        <h2>Data from Arduino</h2>
+        <div id="id01"><p>You need a Facebook connection to see the data</p></div>
+      </div>
+    </div>
+    
+    <div id="templatemo_footer">
+        
+        <ul class="footer_menu">
+            <li><a href="#">Home</a></li>
+            <li class="last_menu"><a href="#">Contact</a></li>
+        </ul>
+
+        Copyright © 2048 <a href="#">FrenchGuys by [Antoine Deloume | Victor Solevic |
+        Alexandre Ghiazza]</a>
+       
+   
+    </div> <!-- end of footer -->
+
+</div> <!-- end of container -->
+
+</body>
+</html>

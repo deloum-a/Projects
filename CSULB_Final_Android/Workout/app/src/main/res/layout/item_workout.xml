@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card"
+    android:padding="@dimen/margin_big"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/workout_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Workout name"
+        android:gravity="center"
+        android:textSize="@dimen/text_header"/>
+
+</LinearLayout>
